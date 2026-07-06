@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueDart Live Tracer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="page">
+        <section class="shell">
+            <header class="topbar">
+                <div>
+                    <h1>BlueDart Live Tracer</h1>
+                    <p>Upload, sync, manage, and export shipment tracking data.</p>
+                </div>
+
+                <div class="limit-card">
+                    <span>API Calls</span>
+                    <strong id="remainingCalls">250</strong>
+                    <small id="limitText">0 used / 250 daily</small>
+                </div>
+            </header>
+
+            <section class="toolbar">
+                <div class="upload-box">
+                    <label for="excelFile">Upload Excel</label>
+                    <input id="excelFile" type="file" accept=".xlsx,.xls">
+                    <button id="uploadBtn" type="button">Upload</button>
+                </div>
+
+                <div class="manual-box">
+                    <label for="trackingIds">Manual Tracking IDs</label>
+                    <textarea id="trackingIds" placeholder="Enter tracking IDs separated by comma or new line"></textarea>
+                    <button id="addBtn" type="button">Add To Dashboard</button>
+                </div>
+            </section>
+
+            <section class="actions">
+                <label class="select-all">
+                    <input id="selectAll" type="checkbox">
+                    Select All
+                </label>
+
+                <button id="syncSelectedBtn" type="button">Sync Selected</button>
+                <button id="syncAllBtn" type="button" class="secondary">Sync All</button>
+                <button id="deleteSelectedBtn" type="button" class="danger">Delete Selected</button>
+                <button id="clearBtn" type="button" class="danger-outline">Clear Dashboard</button>
+                <button id="downloadBtn" type="button" class="success">Download Excel</button>
+            </section>
+
+            <div id="message" class="message"></div>
+
+            <section class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Airway Bill No</th>
+                            <th>Status</th>
+                            <th>Location</th>
+                            <th>Date/Time</th>
+                            <th>Remarks</th>
+                            <th>Last Synced</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardBody">
+                        <tr>
+                            <td colspan="8" class="empty">No tracking numbers added yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
